@@ -1,2 +1,4 @@
 db.sqlite3
 Chalys/__pycache__
+Content/__pycache__
+Auth/__pycache__
