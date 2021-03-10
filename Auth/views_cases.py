@@ -1,4 +1,16 @@
 from django.contrib.auth.models import User
+from django.shortcuts import redirect
+from django.contrib.auth import login, logout, authenticate
+
+def pass_user(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return ""
+    else:
+        return "User with username or password does not exist"
 
 def register_new_user(request):
     username = request.POST['username']
@@ -13,3 +25,12 @@ def register_new_user(request):
         password=user_pass
     )
 
+def check_user(request):
+    user = User.objects.filter(username=request.POST['username'])
+    if request.POST['password'] != request.POST['pass2']:
+        return "Your passwords aren't matchning!"
+    if len(user)==0:
+        register_new_user(request)
+        return ""
+    else:
+        return "User with this login already exist"
