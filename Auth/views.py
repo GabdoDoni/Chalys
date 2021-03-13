@@ -3,6 +3,9 @@ from .forms import RegForm, LogForm
 from . import views_cases   
 # Create your views here.
 
+def logging_out(request):
+    logout(request)
+    return redirect("auth")
 
 def registraion_views(request):
     context = {

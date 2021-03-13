@@ -43,7 +43,7 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">Chalys</a></h1>
+      <h1 class="logo me-auto"><a href="/">Chalys</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -52,14 +52,21 @@
         <ul>
           <li class="active"><a href="/">Home</a></li>
           <li><a href="subjects">Subjects</a></li>
-          <li><a href="blog">Sign UP</a></li>
+          {% if active %}  
+        </ul>
+
+      </nav><!-- .nav-menu -->
+
+      <a href="auth/login" class="get-started-btn">Logout</a>
+          {% else %}    
+          <li><a href="auth/register"><strong>Sign UP</strong></a></li>
 
         </ul>
 
       </nav><!-- .nav-menu -->
 
-      <a href="index.html" class="get-started-btn">Sign IN</a>
-
+      <a href="auth/login" class="get-started-btn">Sign IN</a>
+      {% endif %}
     </div>
   </header><!-- End Header -->
 
