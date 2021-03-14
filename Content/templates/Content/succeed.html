@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Chalys - Exam</title>
+  <title>Chalys - Finish Exam</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -99,52 +99,16 @@
 
           <div class="col-lg-8 entries">
             <article class="entry entry-single">
-              {% if exam %}
-              <form method="post">
-              {% csrf_token %}
 
                 <h2 class="entry-title">
-                  {{ exam.title }}
+                  Exam has been finished!
+                  <div class="entry-content">
+                    <div class="read-more">
+                      <a href="subjects">Continue!</a>
+                    </div>
+                  </div>
                 </h2>
 
-              <div class="entry-meta">
-                <ul>
-                  <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="blog-single.html">{{ exam.owner.first_name }} {{ exam.owner.last_name }}</a></li>
-                  <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                </ul>
-              </div>
-
-              <div class="entry-content">
-                <p>
-                {{ exam.des }}                
-                </p>
-              </div>
-              <div class="entry-content">
-                <p>
-                {{ exam.question1 }}
-                <br>   
-                <input type="" name="answer1" id="answer1" value="">            
-                </p>
-              </div>
-              <div class="entry-content">
-                <p>
-                {{ exam.question2 }}    
-                <br>   
-                <input type="" name="answer1" id="answer1" value="">                 
-                </p>
-              </div>
-              <div class="entry-content">
-                <p>
-                {{ exam.question3 }}                
-                <br>   
-                <input type="" name="answer1" id="answer1" value="">     
-                </p>
-              </div>
-                <input type="submit">
-              </form>
-              {% else %}
-              <h1>Error</h1>
-              {% endif %}
             </article><!-- End blog entry -->
         </div>
 

@@ -122,9 +122,14 @@
                 <p>
                 {{ exam.des }}                
                 </p>
+                {% if exam.id in stud %}
+                <p> Вы проходили этот экзамен </p>
+                <p> {{ exam.points }} Ваш набранный бал </p>
+                {% else %}
                 <div class="read-more">
                   <a href="exam?exam_id={{ exam.id }}">Go to exam</a>
                 </div>
+                {% endif %}
               </div>
 
             </article><!-- End blog entry -->
