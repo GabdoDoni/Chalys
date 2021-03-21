@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from .forms import RegForm, LogForm
 from . import views_cases   
+from django.contrib.auth import logout
 # Create your views here.
 
 def logging_out(request):
     logout(request)
-    return redirect("auth")
+    return redirect("home")
 
 def registraion_views(request):
     context = {

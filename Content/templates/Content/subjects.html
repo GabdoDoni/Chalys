@@ -58,7 +58,7 @@
 
       </nav><!-- .nav-menu -->
 
-      <a href="auth/login" class="get-started-btn">Logout</a>
+      <a href="auth/logout" class="get-started-btn">Logout</a>
           {% else %}    
           <li><a href="auth/register"><strong>Sign UP</strong></a></li>
 
@@ -97,7 +97,6 @@
       <div class="container">
         
         <div class="row">
-          
           {% if subjects %}
           {% for exam in subjects %}
           <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
@@ -114,30 +113,76 @@
               <div class="entry-meta">
                 <ul>
                   <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="blog-single.html">{{ exams.owner.first_name }} {{ exam.owner.last_name }}</a></li>
-                  <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
                 </ul>
               </div>
-
+              
               <div class="entry-content">
                 <p>
-                {{ exam.des }}                
+                  {{ exam.des }}                
                 </p>
-                {% if exam.id in stud %}
+                {% for passed in stud %}
+                {% if passed.exam == exam %}
+                {% if request.user.id == passed.user.id %}
                 <p> Вы проходили этот экзамен </p>
-                <p> {{ exam.points }} Ваш набранный бал </p>
+                <p> {{ passed.points }}/3 Ваш набранный бал </p>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                {% if exam.id in stud1 %}
                 {% else %}
                 <div class="read-more">
                   <a href="exam?exam_id={{ exam.id }}">Go to exam</a>
                 </div>
                 {% endif %}
+                {% if exam.owner.id == request.user.id %}
+                <form method="post">
+                  {% csrf_token %}
+                  <input type="hidden" value="{{exam.id}}"  name="exam_id">
+                  <input type="submit" value="Delete">
+                </form>
+                {% endif %}
               </div>
-
+              
             </article><!-- End blog entry -->
           </div>
           {% endfor %}
           {% endif %}
+          
+          
+          {% if active %}
+          <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+            
+            <article class="entry">
+              <div class="entry-img">
+                <img src="{% static "Content/assets/img/blog-1.jpg" %}" alt="" class="img-fluid">
+              </div>
+      
+              <h2 class="entry-title">
+              Создай свой Тест!
+              </h2>
+      
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="icofont-user"></i> <a>Admin</a></li>
+                </ul>
+              </div>
+      
+              <div class="entry-content">
+                <p>
+                Ты можешь создать тест на любую тему, со своими ответами и проверить своих друзей на знайние данной темы.               
+                </p>
+                <div class="read-more">
+                  <a href="exam_creation">Exam creation</a>
+                </div>
+                {% else %}
+      
+                {% endif %}
+
+              </div>
+      
+            </article><!-- End blog entry -->
+          </div>
         </div>
-        
       </div>
     </section><!-- End Blog Section -->
   </main><!-- End #main -->

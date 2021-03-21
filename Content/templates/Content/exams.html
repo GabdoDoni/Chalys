@@ -70,8 +70,11 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Exams</h2>
-          <ol>
+          {% if active %}
+          <h2>Welcome, {{request.user.first_name}} {{request.user.last_name}}</h2>
+          {% else %}
+          <h2>Welcome, guest</h2>
+          {% endif %}<ol>
             <li><a href="/">Home</a></li>
             <li><a href="subjects">Subjects</a></li>
             <li>Exams</li>

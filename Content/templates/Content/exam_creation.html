@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Chalys - Finish Exam</title>
+  <title>Chalys - Exam creation</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -78,13 +78,13 @@
 
         <div class="d-flex justify-content-between align-items-center">
           {% if active %}
-          <h2>Welcome, {{request.user.first_name}} {{request.user.last_name}}</h2>
+          <h2>{{request.user.first_name}} {{request.user.last_name}}</h2>
           {% else %}
           <h2>Welcome, guest</h2>
           {% endif %}<ol>
             <li><a href="/">Home</a></li>
             <li><a href="subjects">Subjects</a></li>
-            <li><a>Exam</a></li>
+            <li><a>Exam create</a></li>
           </ol>
         </div>
 
@@ -99,16 +99,56 @@
 
           <div class="col-lg-8 entries">
             <article class="entry entry-single">
+              {% if form %}
+              <form method="post">
+              {% csrf_token %}
 
                 <h2 class="entry-title">
-                  Exam has been finished!
-                  <div class="entry-content">
-                    <div class="read-more">
-                      <a href="subjects">Continue!</a>
-                    </div>
-                  </div>
+                  {{ form.title }}
                 </h2>
 
+              <div class="entry-meta">
+                <ul>
+                  <li class="d-flex align-items-center"><i class="icofont-user"></i> <a>{{ exam.owner.first_name }} {{ exam.owner.last_name }}</a></li>
+                </ul>
+              </div>
+
+              <div class="entry-content">
+                <p>
+                {{ form.des }}                
+                </p>
+              </div>
+              <div class="entry-content">
+                <p>
+                {{ form.question1 }}
+                <br>   
+                {{ form.answer1 }}           
+                </p>
+              </div>
+              <div class="entry-content">
+                <p>
+                {{ form.question2 }}
+                <br>   
+                {{ form.answer2 }}               
+                </p>
+              </div>
+              <div class="entry-content">
+                <p>
+                {{ form.question3 }}
+                <br>   
+                {{ form.answer3 }}     
+                </p>
+              </div>
+                <input type="submit" value="Save">
+              </form>
+              {% else %}
+              <h1>Sorry, something gone wrong</h1>
+              <div class="entry-content">
+                <div class="read-more">
+                  <a href="subjects">subjects</a>
+                </div>
+              </div>
+              {% endif %}
             </article><!-- End blog entry -->
         </div>
 
